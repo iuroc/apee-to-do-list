@@ -15,6 +15,7 @@ $config = [
         'db' => '', // 数据库名称
     ],
     'table' => [
-        'key' => 'apee_to_do_list', // 文件表名
+        'data' => 'apee_to_do_list_data', // 文件表名
+        'user' => 'poncon_user', // 用户表
     ],
 ];
