@@ -20,6 +20,9 @@ $(document).ready(function () {
         if (target == 'home') {
             history.replaceState({}, null, './')
             document.title = Poncon.title
+            if (!Poncon.load.home) {
+                Poncon.home_loadDataList(0)
+            }
         } else if (target == 'login') {
             document.title = '用户登录 - ' + Poncon.title
         } else {
@@ -31,4 +34,9 @@ $(document).ready(function () {
         var hash = new URL(event.newURL).hash
         router(hash)
     })
+    function getDate() {
+        var date = new Date()
+        return date.getFullYear() + '年' + (date.getMonth() + 1) + '月' + date.getDate() + '日\n有什么安排...'
+    }
+    $('._jfgghywsegyferg').attr('placeholder', '今天是' + getDate())
 })

@@ -163,6 +163,7 @@ class Poncon
             `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
             `need_time` VARCHAR(255) NOT NULL, -- 要求完成时间
             `content` TEXT NOT NULL, -- 待办内容
+            `finish` INT(11) NOT NULL DEFAULT 0, -- 是否完成待办
             PRIMARY KEY (`id`) -- 主键
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
         $result = mysqli_query($conn, $sql);

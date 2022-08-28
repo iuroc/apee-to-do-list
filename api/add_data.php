@@ -11,8 +11,8 @@ $poncon = new Poncon;
 
 $username = $poncon->POST('username', '', true);
 $password = $poncon->POST('password', '', true);
-$content = $poncon->POST('data', '', true);
-$need_time = $poncon->POST('need_date', '', true);
+$content = $poncon->POST('content', '', true);
+$need_time = $poncon->POST('need_time', '', true);
 $conn = $poncon->initDb();
 $poncon->login($conn, $username, $password);
 $table = $poncon->getConfig()['table']['data'];

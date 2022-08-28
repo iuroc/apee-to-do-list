@@ -22,3 +22,31 @@
     outline: none;
     border: 0;
 }
+
+._hfuwugfergtruhg {
+    flex: 1;
+}
+
+.custom-control-label::before,
+.custom-control-label::after {
+    height: 25px;
+    width: 25px;
+}
+
+.right_jfgghesdgfherg {
+    flex: 1;
+}
+
+.custom-control-input:checked~.custom-control-label::before {
+    color: #fff;
+    border-color: var(--success);
+    background-color: var(--success);
+}
+
+._ufgygtfyerytger {
+    flex: 1;
+}
+
+.line-through {
+    text-decoration: line-through;
+}

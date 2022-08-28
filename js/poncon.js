@@ -1,7 +1,10 @@
 const Poncon = {
     title: 'APEE 待办清单',
     storageKey: 'apee_to_do_list', // 本地存储键名
-    data: {},
+    data: {
+        home: {},
+        login: {}
+    },
     load: {}, // 页面初始化加载完成情况，pageName: true/false
     tempTitle: {}, // 用于必要时记录页面标题
     request: $.post('api/empty.php'),
@@ -108,5 +111,123 @@ const Poncon = {
     home_clickSetNeedTime() {
         $('._fyhferygfyer').show()
         $('._wfergerge').hide()
+        var date = new Date()
+        function two(num) {
+            if (num < 10) {
+                return '0' + num
+            }
+            return '' + num
+        }
+        var year = date.getFullYear()
+        var month = two(date.getMonth() + 1)
+        var day = two(date.getDate())
+        $('._juafggfuergrth').val([year, month, day].join('-'))
+        this.data.home.need_time = true
+    },
+    /**
+     * 点击添加待办
+     */
+    home_clickAddData() {
+        var content = $('._jfgghywsegyferg').val()
+        var need_time = $('._juafggfuergrth').val().split('-')
+        var need_time_str = ''
+        if (!content || content.search(/^\s+$/) != -1) {
+            alert('待办内容不能为空')
+            return
+        }
+        if (need_time.length == 3) {
+            need_time_str = need_time[0] + ' 年 ' + need_time[1] + ' 月 ' + need_time[2] + ' 日'
+        } else if (this.data.home.need_time) {
+            alert('请输入正确的日期')
+            return
+        }
+        var This = this
+        $.post('api/add_data.php', {
+            username: this.getStorage('username'),
+            password: this.getStorage('password'),
+            content: content,
+            need_time: need_time_str
+        }, function (data) {
+            if (data.code == 200) {
+                $('._jfgghywsegyferg').val('')
+                This.home_clickRemoveNeedTime()
+                Poncon.home_loadDataList(0)
+                return
+            }
+            alert(data.msg)
+        })
+    },
+    /**
+     * 取消设置期限
+     */
+    home_clickRemoveNeedTime() {
+        $('._fyhferygfyer').hide()
+        $('._wfergerge').show()
+        $('._juafggfuergrth').val('')
+        this.data.home.need_time = false
+    },
+    /**
+     * 主页加载待办列表
+     */
+    home_loadDataList(page = 0, pageSize = 100) {
+        var This = this
+        if (page == 0) {
+            $('.loadMore_jfghe').hide().removeAttr('disabled')
+            $('.data-list._jfguyrguyer').html('')
+        }
+        $.post('api/get_list.php', {
+            username: this.getStorage('username'),
+            password: this.getStorage('password'),
+            page: page,
+            pageSize: pageSize
+        }, function (data) {
+            if (data.code == 200) {
+                This.load.home = true
+                if (data.data.length == 0 && page == 0) {
+                    // 没有数据
+                } else if (data.data.length == pageSize) {
+                    $('.loadMore_jfghe').html('加载更多')
+                    $('.loadMore_jfghe').show()
+                } else if (page > 0) {
+                    $('.loadMore_jfghe').show()
+                    $('.loadMore_jfghe').html('已经到底了').attr('disabled', 'disabled')
+                }
+                var html = This.home_makeHtml(data.data)
+                $('.data-list._jfguyrguyer').append(html)
+                return
+            }
+            alert(data.msg)
+        })
+    },
+    /**
+     * 生成列表HTML
+     * @param {Array} data 列表数据
+     */
+    home_makeHtml(data) {
+        var html = ''
+        console.log(data)
+        var html_finish = ''
+        data.forEach((item, index) => {
+            item.finish = parseInt(item.finish)
+            var html_temp = `<div class="rounded border shadow-sm p-3 d-flex mb-3">
+                                <div class="custom-control custom-checkbox mr-3">
+                                    <input type="checkbox"${item.finish ? ' checked' : ''} class="custom-control-input d-none" id="home-list-item-${index}">
+                                    <label class="custom-control-label" for="home-list-item-${index}"></label>
+                                </div>
+                                <div class="right_jfgghesdgfherg">
+                                    <h5 contenteditable="${item.finish ? 'off' : 'true'}" class="${item.finish ? 'line-through ' : ''}font-weight-bold _hfuwugfergtruhg${item.finish ? ' text-muted' : ''}">${item.content.replaceAll('<', '&lt;').replaceAll('>', '&gt;')}</h5>
+                                    ${item.need_time ? `<div class="d-flex">期限：<b class="text-info _ufgygtfyerytger" contenteditable="true">${item.need_time}</b></div>` : ''}
+                                    <div class="small text-muted">
+                                        ${item.created_at} 创建
+                                    </div>
+                                </div>
+                            </div>`
+            if (item.finish) {
+                html_finish += html_temp
+            } else {
+                html += html_temp
+            }
+        })
+        return html + html_finish
     }
 }

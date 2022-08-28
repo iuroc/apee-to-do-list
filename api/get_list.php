@@ -17,13 +17,14 @@ $offset = $page * $pageSize;
 $conn = $poncon->initDb();
 $poncon->login($conn, $username, $password);
 $table = $poncon->getConfig()['table']['data'];
-$sql = "SELECT * FROM `$table` WHERE `username` = '$username' LIMIT $offset, $pageSize";
+$sql = "SELECT * FROM `$table` WHERE `username` = '$username' ORDER BY `created_at` DESC LIMIT $offset, $pageSize";
 $result = mysqli_query($conn, $sql);
 if (!$result) {
     $poncon->error(903, '数据库错误');
 }
 $data = [];
-if (mysqli_num_rows($result) >= 0) {
-    $data = mysqli_fetch_assoc($result);
+while ($row = mysqli_fetch_assoc($result)) {
+    unset($row['id']);
+    $data[] = $row;
 }
 $poncon->success('获取成功', $data);
