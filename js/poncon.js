@@ -1,6 +1,6 @@
 const Poncon = {
     title: 'APEE 待办清单',
-    storageKey: 'apee_list', // 本地存储键名
+    storageKey: 'apee_to_do_list', // 本地存储键名
     data: {},
     load: {}, // 页面初始化加载完成情况，pageName: true/false
     tempTitle: {}, // 用于必要时记录页面标题
@@ -88,4 +88,25 @@ const Poncon = {
         this.setStorage('username', '')
         this.setStorage('password', '')
     },
+    /**
+     * 点击登录
+     */
+    login_clickLogin() {
+        var username = $('#login-input-username').val()
+        var password = $('#login-input-password').val()
+        if (!username || !password) {
+            return
+        }
+        password = md5(password)
+        this.setStorage('username', username)
+        this.setStorage('password', password)
+        this.login()
+    },
+    /**
+     * 点击设置期限
+     */
+    home_clickSetNeedTime() {
+        $('._fyhferygfyer').show()
+        $('._wfergerge').hide()
+    }
 }

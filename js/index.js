@@ -1,6 +1,8 @@
 history.scrollRestoration = 'manual'
 $(document).ready(function () {
-    // Poncon.login(true)
+    if (!Poncon.login(true)) {
+        location.hash = '/login'
+    }
     router(location.hash)
     function router(hash) {
         hash = hash.split('/')
@@ -17,7 +19,9 @@ $(document).ready(function () {
         // $('.tab-' + target).addClass('oyp-active')
         if (target == 'home') {
             history.replaceState({}, null, './')
-            document.title = '主页 - ' + Poncon.title
+            document.title = Poncon.title
+        } else if (target == 'login') {
+            document.title = '用户登录 - ' + Poncon.title
         } else {
             location.hash = ''
         }

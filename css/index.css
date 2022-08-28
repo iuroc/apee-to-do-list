@@ -1,0 +1,24 @@
+.font-size-0 {
+    font-size: 0;
+}
+
+._fyhferygfyer {
+    display: none;
+    max-width: 300px;
+    flex: 1;
+}
+
+._jfgghywsegyferg {
+    border-width: 2px;
+    font-size: 20px;
+}
+
+._jfgghywsegyferg:focus {
+    border-width: 3px;
+    border-color: var(--success);
+}
+
+[contenteditable=true] {
+    outline: none;
+    border: 0;
+}
