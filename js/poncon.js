@@ -97,7 +97,11 @@ const Poncon = {
     login_clickLogin() {
         var username = $('#login-input-username').val()
         var password = $('#login-input-password').val()
-        if (!username || !password) {
+        if (!username) {
+            $('#login-input-username').addClass('is-invalid')
+            return
+        } else if (!password) {
+            $('#login-input-password').addClass('is-invalid')
             return
         }
         password = md5(password)
@@ -109,7 +113,7 @@ const Poncon = {
      * 点击设置期限
      */
     home_clickSetNeedTime() {
-        $('._fyhferygfyer').show()
+        $('._fyhferygfyer').fadeIn()
         $('._wfergerge').hide()
         var date = new Date()
         function two(num) {
@@ -125,14 +129,18 @@ const Poncon = {
         this.data.home.need_time = true
     },
     /**
-     * 点击添加待办
+     * 
+     * @param {object} ele 按钮DOM
+     * @returns 
      */
-    home_clickAddData() {
+    home_clickAddData(ele) {
         var content = $('._jfgghywsegyferg').val()
+        content = content.replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll(/[\f\r\t\v ]/ig, '&nbsp;').replaceAll(/\n/ig, '<br>')
         var need_time = $('._juafggfuergrth').val().split('-')
         var need_time_str = ''
         if (!content || content.search(/^\s+$/) != -1) {
-            alert('待办内容不能为空')
+            $('._sfeerreh').html('请输入待办内容')
+            $('._jfgghywsegyferg').addClass('is-invalid')
             return
         }
         if (need_time.length == 3) {
@@ -142,6 +150,8 @@ const Poncon = {
             return
         }
         var This = this
+        var old_btn_text = $(ele).html()
+        $(ele).html('提交中').attr('disabled', 'disabled')
         $.post('api/add_data.php', {
             username: this.getStorage('username'),
             password: this.getStorage('password'),
@@ -149,6 +159,7 @@ const Poncon = {
             need_time: need_time_str
         }, function (data) {
             if (data.code == 200) {
+                $(ele).html(old_btn_text).removeAttr('disabled')
                 $('._jfgghywsegyferg').val('')
                 This.home_clickRemoveNeedTime()
                 Poncon.home_loadDataList(0)
@@ -162,7 +173,7 @@ const Poncon = {
      */
     home_clickRemoveNeedTime() {
         $('._fyhferygfyer').hide()
-        $('._wfergerge').show()
+        $('._wfergerge').fadeIn()
         $('._juafggfuergrth').val('')
         this.data.home.need_time = false
     },
@@ -175,6 +186,7 @@ const Poncon = {
             $('.loadMore_jfghe').hide().removeAttr('disabled')
             $('.data-list._jfguyrguyer').html('')
         }
+        $('.loadMore_jfghe').html('正在加载中').attr('disabled', 'disabled')
         $.post('api/get_list.php', {
             username: this.getStorage('username'),
             password: this.getStorage('password'),
@@ -182,12 +194,18 @@ const Poncon = {
             pageSize: pageSize
         }, function (data) {
             if (data.code == 200) {
+                This.data.home.page = page
+                This.data.home.pageSize = pageSize
                 This.load.home = true
+                if (page == 0) {
+                    $('body').show()
+                }
                 if (data.data.length == 0 && page == 0) {
                     // 没有数据
                 } else if (data.data.length == pageSize) {
                     $('.loadMore_jfghe').html('加载更多')
                     $('.loadMore_jfghe').show()
+                    $('.loadMore_jfghe').removeAttr('disabled')
                 } else if (page > 0) {
                     $('.loadMore_jfghe').show()
                     $('.loadMore_jfghe').html('已经到底了').attr('disabled', 'disabled')
@@ -205,22 +223,22 @@ const Poncon = {
      */
     home_makeHtml(data) {
         var html = ''
-        console.log(data)
         var html_finish = ''
         data.forEach((item, index) => {
             item.finish = parseInt(item.finish)
-            var html_temp = `<div class="rounded border shadow-sm p-3 d-flex mb-3">
+            var html_temp = `<div class="rounded border shadow-sm p-3 d-flex mb-3 _jshdesrf">
                                 <div class="custom-control custom-checkbox mr-3">
                                     <input type="checkbox"${item.finish ? ' checked' : ''} class="custom-control-input d-none" id="home-list-item-${index}">
                                     <label class="custom-control-label" for="home-list-item-${index}"></label>
                                 </div>
                                 <div class="right_jfgghesdgfherg">
-                                    <h5 contenteditable="${item.finish ? 'off' : 'true'}" class="${item.finish ? 'line-through ' : ''}font-weight-bold _hfuwugfergtruhg${item.finish ? ' text-muted' : ''}">${item.content.replaceAll('<', '&lt;').replaceAll('>', '&gt;')}</h5>
+                                    <h5 contenteditable="${item.finish ? 'off' : 'true'}" class="${item.finish ? 'line-through ' : ''}font-weight-bold _hfuwugfergtruhg${item.finish ? ' text-muted' : ''}">${item.content}</h5>
                                     ${item.need_time ? `<div class="d-flex">期限：<b class="text-info _ufgygtfyerytger" contenteditable="true">${item.need_time}</b></div>` : ''}
                                     <div class="small text-muted">
                                         ${item.created_at} 创建
                                     </div>
                                 </div>
+                                <button class="btn btn-sm btn-danger btn_asdjiad">删除</button>
                             </div>`
             if (item.finish) {
                 html_finish += html_temp
@@ -229,5 +247,28 @@ const Poncon = {
             }
         })
         return html + html_finish
+    },
+    /**
+     * 按键按下事件
+     * @param {string} selector 选择器
+     */
+    home_keydown(selector) {
+        var ele = $(selector)
+        ele.removeClass('is-invalid')
+    },
+    /**
+     * 主页加载更多
+     */
+    home_loadMore() {
+        this.home_loadDataList(this.data.home.page + 1, this.data.home.pageSize)
+    },
+    /**
+     * 登录页回车事件
+     * @param {string} selector 选择器
+     */
+    login_keyup(event, selector) {
+        if (event.keyCode == 13) {
+            $(selector).click()
+        }
     }
 }

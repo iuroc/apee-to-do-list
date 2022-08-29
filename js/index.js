@@ -25,6 +25,7 @@ $(document).ready(function () {
             }
         } else if (target == 'login') {
             document.title = '用户登录 - ' + Poncon.title
+            $('body').show()
         } else {
             location.hash = ''
         }
@@ -38,5 +39,8 @@ $(document).ready(function () {
         var date = new Date()
         return date.getFullYear() + '年' + (date.getMonth() + 1) + '月' + date.getDate() + '日\n有什么安排...'
     }
+    $('input').bind('keyup', function () {
+        $(this).removeClass('is-invalid')
+    })
     $('._jfgghywsegyferg').attr('placeholder', '今天是' + getDate())
 })

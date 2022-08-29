@@ -27,7 +27,7 @@
     <script src="js/index.js?<?php echo time(); ?>"></script>
 </head>
 
-<body>
+<body style="display: none;">
     <nav class="navbar navbar-expand-sm navbar-light bg-light shadow-sm sticky-top mb-4">
         <a class="navbar-brand" href=""><?php echo $config['title'] ?></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,13 +43,18 @@
     </nav>
     <div class="container pb-4">
         <div class="page-home page-oyp">
-            <textarea class="form-control mb-3 shadow-sm _jfgghywsegyferg" style="height: 100px;"></textarea>
+            <div class="mb-3">
+                <textarea class="form-control shadow-sm _jfgghywsegyferg" style="height: 100px;" onkeyup="Poncon.home_keydown('._jfgghywsegyferg')"></textarea>
+                <div class="invalid-feedback _sfeerreh">
+                    请输入待办内容
+                </div>
+            </div>
             <div class="font-size-0 d-flex mb-3">
-                <button class="btn btn-info shadow-sm d-none d-sm-inline-block" onclick="Poncon.home_clickAddData()">添加待办</button>
-                <button class="btn btn-info shadow-sm d-sm-none" onclick="Poncon.home_clickAddData()">添加</button>
+                <button class="btn btn-info shadow-sm d-none d-sm-inline-block add_hfghsdgfsd" onclick="Poncon.home_clickAddData(this)">添加待办</button>
+                <button class="btn btn-info shadow-sm d-sm-none add_hfghsdgfsd" onclick="Poncon.home_clickAddData(this)">添加</button>
                 <button class="btn border-danger text-danger shadow-sm _wfergerge ml-3" onclick="Poncon.home_clickSetNeedTime()">设置期限</button>
                 <div class="_fyhferygfyer ml-3">
-                    <dic class="input-group">
+                    <dic class="input-group _jhawergeewr">
                         <input type="date" class="form-control border-danger shadow-sm _juafggfuergrth" id="home-input-needTime">
                         <div class="input-group-append">
                             <button class="btn btn-danger shadow-sm" onclick="Poncon.home_clickRemoveNeedTime()">取消设置</button>
@@ -58,7 +63,7 @@
                 </div>
             </div>
             <div class="data-list  _jfguyrguyer">
-                <div class="rounded border shadow-sm p-3 d-flex mb-3">
+                <div class="rounded border shadow-sm p-3 d-flex mb-3 _jshdesrf">
                     <div class="custom-control custom-checkbox mr-3">
                         <input type="checkbox" class="custom-control-input d-none" id="home-list-item-0">
                         <label class="custom-control-label" for="home-list-item-0"></label>
@@ -70,9 +75,10 @@
                             2022年8月28日 创建
                         </div>
                     </div>
+                    <button class="btn btn-sm btn-danger btn_asdjiad">删除</button>
                 </div>
             </div>
-            <button class="btn btn-primary loadMore_jfghe" style="display: none;">加载更多</button>
+            <button class="btn btn-primary loadMore_jfghe" onclick="Poncon.home_loadMore()" style="display: none;">加载更多</button>
         </div>
         <div class="page-login page-oyp">
             <div class="row">
@@ -82,14 +88,22 @@
                         <div class="form-group">
                             <label for="login-input-username">用户名</label>
                             <input type="text" class="form-control" id="login-input-username">
+                            <div class="invalid-feedback">
+                                请输入用户名
+                            </div>
                         </div>
+
                         <div class="form-group mb-4">
                             <label for="login-input-password">密码</label>
-                            <input type="password" class="form-control" id="login-input-password" autocomplete="new-password">
+                            <input type="password" class="form-control" id="login-input-password" autocomplete="new-password" onkeyup="Poncon.login_keyup(event, '._jfgheswfred')">
+                            <div class="invalid-feedback">
+                                请输入密码
+                            </div>
                         </div>
+
                         <div class="row">
                             <div class="col pr-0 pr-sm-2">
-                                <button class="btn btn-block btn-success" onclick="Poncon.login_clickLogin()">登录</button>
+                                <button class="btn btn-block btn-success _jfgheswfred" onclick="Poncon.login_clickLogin()">登录</button>
                             </div>
                             <div class="col">
                                 <button class="btn btn-block btn-outline-info" data-toggle="collapse" href="#register-tip">注册</button>

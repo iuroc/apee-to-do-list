@@ -1,3 +1,8 @@
+* {
+    word-wrap: break-word !important;
+    word-break: break-all !important;
+}
+
 .font-size-0 {
     font-size: 0;
 }
@@ -49,4 +54,19 @@
 
 .line-through {
     text-decoration: line-through;
+}
+
+._jfguyrguyer ._jshdesrf {
+    position: relative;
+}
+
+.btn_asdjiad {
+    display: none;
+}
+
+._jfguyrguyer ._jshdesrf:hover .btn_asdjiad {
+    display: block;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
 }
