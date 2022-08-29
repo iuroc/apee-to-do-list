@@ -199,6 +199,7 @@ const Poncon = {
                 This.load.home = true
                 if (page == 0) {
                     $('body').show()
+                    $('._jfgghywsegyferg').focus()
                 }
                 if (data.data.length == 0 && page == 0) {
                     // 没有数据
@@ -238,7 +239,7 @@ const Poncon = {
                                         ${item.created_at} 创建
                                     </div>
                                 </div>
-                                <button class="btn btn-sm btn-danger btn_asdjiad">删除</button>
+                                <button class="btn btn-sm btn-danger btn_asdjiad" onclick="Poncon.home_deleteData(this, ${item.id})">删除</button>
                             </div>`
             if (item.finish) {
                 html_finish += html_temp
@@ -270,5 +271,18 @@ const Poncon = {
         if (event.keyCode == 13) {
             $(selector).click()
         }
+    },
+    home_deleteData(ele, id) {
+        $.post('api/delete_data.php', {
+            username: this.getStorage('username'),
+            password: this.getStorage('password'),
+            id: id
+        }, function (data) {
+            if (data.code == 200) {
+                $(ele).parents('._jshdesrf').remove()
+                return
+            }
+            alert(data.msg)
+        })
     }
 }

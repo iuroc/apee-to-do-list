@@ -35,9 +35,12 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <!-- <li class="nav-item nav-active-home">
-                    <a class="nav-link" href="#/">文件上传</a>
-                </li> -->
+                <li class="nav-item nav-active-home">
+                    <a class="nav-link cursor" onclick="Poncon.logout()">教程</a>
+                </li>
+                <li class="nav-item nav-active-home">
+                    <a class="nav-link cursor" onclick="Poncon.logout()">退出登录</a>
+                </li>
             </ul>
         </div>
     </nav>
@@ -62,22 +65,7 @@
                     </dic>
                 </div>
             </div>
-            <div class="data-list  _jfguyrguyer">
-                <div class="rounded border shadow-sm p-3 d-flex mb-3 _jshdesrf">
-                    <div class="custom-control custom-checkbox mr-3">
-                        <input type="checkbox" class="custom-control-input d-none" id="home-list-item-0">
-                        <label class="custom-control-label" for="home-list-item-0"></label>
-                    </div>
-                    <div class="right_jfgghesdgfherg">
-                        <h5 contenteditable="true" class="font-weight-bold _hfuwugfergtruhg">完成一篇论文，考驾照</h5>
-                        <div class="d-flex">期限：<b class="text-info" style="flex: 1;" contenteditable="true">2022 年 8 月 28 日</b></div>
-                        <div class="small text-muted">
-                            2022年8月28日 创建
-                        </div>
-                    </div>
-                    <button class="btn btn-sm btn-danger btn_asdjiad">删除</button>
-                </div>
-            </div>
+            <div class="data-list  _jfguyrguyer"></div>
             <button class="btn btn-primary loadMore_jfghe" onclick="Poncon.home_loadMore()" style="display: none;">加载更多</button>
         </div>
         <div class="page-login page-oyp">

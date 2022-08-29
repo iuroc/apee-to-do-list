@@ -1,8 +1,10 @@
 history.scrollRestoration = 'manual'
+
 $(document).ready(function () {
     if (!Poncon.login(true)) {
         location.hash = '/login'
     }
+    
     router(location.hash)
     function router(hash) {
         hash = hash.split('/')
@@ -20,6 +22,7 @@ $(document).ready(function () {
         if (target == 'home') {
             history.replaceState({}, null, './')
             document.title = Poncon.title
+            $('._jfgghywsegyferg').focus()
             if (!Poncon.load.home) {
                 Poncon.home_loadDataList(0)
             }
