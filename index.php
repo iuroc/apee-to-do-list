@@ -38,7 +38,7 @@
                 <li class="nav-item nav-active-home">
                     <a class="nav-link cursor _ufyhesgfer" data-container="body" data-toggle="popover" data-trigger="focus" tabindex="0" data-placement="bottom" title="使用教程" data-content="点击列表左边的选框，可以设置事项的完成状态。直接点击列表可以编辑内容，编辑时文字颜色变为红色，回车即可保存修改。删除事项前，需要先将事项状态设为已完成">教程</a>
                 </li>
-                <li class="nav-item nav-active-home">
+                <li class="nav-item nav-active-home _ajhfghwsf show-hasLogin" style="display: none;">
                     <a class="nav-link cursor" onclick="Poncon.logout()">退出登录</a>
                 </li>
             </ul>
