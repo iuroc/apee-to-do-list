@@ -12,7 +12,7 @@ $poncon = new Poncon;
 $username = $poncon->POST('username', '', true);
 $password = $poncon->POST('password', '', true);
 $id = $poncon->POST('id', '', true);
-$finish = $poncon->POST('finish', 0, true);
+$finish = (int)$poncon->POST('finish', 0, true);
 $conn = $poncon->initDb();
 $poncon->login($conn, $username, $password);
 $table = $poncon->getConfig()['table']['data'];

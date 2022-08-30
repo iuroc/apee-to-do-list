@@ -212,6 +212,28 @@ const Poncon = {
                 }
                 var html = This.home_makeHtml(data.data)
                 $('.data-list._jfguyrguyer').append(html)
+                $('._jafrwgerg').unbind().change(function () {
+                    var checked = this.checked
+                    var parent = $(this).parents('._jshdesrf')
+                    var id = parent.data('id')
+                    $.post('api/change_finish.php', {
+                        username: This.getStorage('username'),
+                        password: This.getStorage('password'),
+                        id: id,
+                        finish: checked ? 1 : 0
+                    }, function (data) {
+                        if (data.code == 200) {
+                            if (data.data.finish) {
+                                parent.addClass('finish')
+                            } else {
+                                parent.removeClass('finish')
+                                parent.find('._hfuwugfergtruhg').attr('')
+                            }
+                            return
+                        }
+                        alert(data.msg)
+                    })
+                })
                 return
             }
             alert(data.msg)
@@ -226,13 +248,13 @@ const Poncon = {
         var html_finish = ''
         data.forEach((item, index) => {
             item.finish = parseInt(item.finish)
-            var html_temp = `<div class="rounded border shadow-sm p-3 d-flex mb-3 _jshdesrf">
+            var html_temp = `<div class="rounded border shadow-sm p-3 d-flex mb-3 _jshdesrf${item.finish ? ' finish' : ''}" data-id="${item.id}">
                                 <div class="custom-control custom-checkbox mr-3">
-                                    <input type="checkbox"${item.finish ? ' checked' : ''} class="custom-control-input d-none" id="home-list-item-${index}">
+                                    <input type="checkbox"${item.finish ? ' checked' : ''} class="custom-control-input d-none _jafrwgerg" id="home-list-item-${index}">
                                     <label class="custom-control-label" for="home-list-item-${index}"></label>
                                 </div>
                                 <div class="right_jfgghesdgfherg">
-                                    <h5 contenteditable="${item.finish ? 'off' : 'true'}" class="${item.finish ? 'line-through ' : ''}font-weight-bold _hfuwugfergtruhg${item.finish ? ' text-muted' : ''}">${item.content}</h5>
+                                    <h5 contenteditable="true" class="font-weight-bold _hfuwugfergtruhg">${item.content}</h5>
                                     ${item.need_time ? `<div class="d-flex">期限：<b class="text-info _ufgygtfyerytger" contenteditable="true">${item.need_time}</b></div>` : ''}
                                     <div class="small text-muted">
                                         ${item.created_at} 创建

@@ -60,11 +60,24 @@
     position: relative;
 }
 
+._jshdesrf.finish {
+    text-decoration: line-through;
+    color: #aaaaaa;
+}
+
+._jshdesrf.finish ._hfuwugfergtruhg {
+    color: var(--muted);
+}
+
 .btn_asdjiad {
     display: none;
     position: absolute;
     bottom: 10px;
     right: 10px;
+}
+
+.finish:hover .btn_asdjiad {
+    display: block;
 }
 
 /* ._jfguyrguyer ._jshdesrf:hover .btn_asdjiad {
