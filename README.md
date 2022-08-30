@@ -11,6 +11,7 @@
 - 下载安卓APP：[>>点此下载<<](https://github.com/oyps/apee-to-do-list/releases/download/1.8.30/com.apee.todolist.apk)
 
 ![](img/截图_home.png)
+![](img/截图_home_android.jpg)
 
 ## 功能规划
 
