@@ -236,6 +236,34 @@ const Poncon = {
                         alert(data.msg)
                     })
                 })
+                $('.contenteditable_df').unbind().bind('keydown', function (event) {
+                    if (event.keyCode == 13) {
+                        return false;
+                    }
+                }).bind('keyup', function (event) {
+                    if (event.keyCode == 13) {
+                        var This_2 = this
+                        var parent = $(this).parents('._jshdesrf')
+                        var id = parent.data('id')
+                        var content = parent.find('._hfuwugfergtruhg').html()
+                        var need_time = parent.find('._ufgygtfyerytger').html()
+                        $.post('api/edit_data.php', {
+                            username: This.getStorage('username'),
+                            password: This.getStorage('password'),
+                            id: id,
+                            content: content,
+                            need_time: need_time
+                        }, function (data) {
+                            if (data.code == 200) {
+                                $(This_2).removeClass('text-danger').blur()
+                                return
+                            }
+                            alert(data.msg)
+                        })
+                        return false
+                    }
+                    $(this).addClass('text-danger')
+                })
                 return
             }
             alert(data.msg)
@@ -307,5 +335,14 @@ const Poncon = {
             }
             alert(data.msg)
         })
+    },
+    /**
+     * 退出登录
+     */
+    logout() {
+        if (confirm('确定要退出登录吗？')) {
+            localStorage.removeItem(this.storageKey)
+            location.reload()
+        }
     }
 }
