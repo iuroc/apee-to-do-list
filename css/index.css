@@ -62,14 +62,17 @@
 
 .btn_asdjiad {
     display: none;
-}
-
-._jfguyrguyer ._jshdesrf:hover .btn_asdjiad {
-    display: block;
     position: absolute;
     bottom: 10px;
     right: 10px;
 }
+
+/* ._jfguyrguyer ._jshdesrf:hover .btn_asdjiad {
+    display: block;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+} */
 
 .cursor {
     cursor: pointer;

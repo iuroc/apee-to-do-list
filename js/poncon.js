@@ -199,7 +199,6 @@ const Poncon = {
                 This.load.home = true
                 if (page == 0) {
                     $('body').show()
-                    $('._jfgghywsegyferg').focus()
                 }
                 if (data.data.length == 0 && page == 0) {
                     // 没有数据
