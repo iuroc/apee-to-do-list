@@ -8,7 +8,7 @@
 - 开发时间：2022年8月28日
 - 主页：https:/apee.top
 - 站点预览：http://i.ouyangpeng.top/dbqd/
-- 下载安卓APP：
+- 下载安卓APP：[>>点此下载<<](https://github.com/oyps/apee-to-do-list/releases/download/1.8.30/com.apee.todolist.apk)
 
 ![](img/截图_home.png)
 
