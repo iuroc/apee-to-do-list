@@ -225,11 +225,11 @@ const Poncon = {
                         if (data.code == 200) {
                             if (data.data.finish) {
                                 parent.addClass('finish')
-                                $('.contenteditable_df').removeAttr('contenteditable')
+                                parent.find('.contenteditable_df').removeAttr('contenteditable')
                             } else {
                                 parent.removeClass('finish')
                                 parent.find('._hfuwugfergtruhg').attr('')
-                                $('.contenteditable_df').attr('contenteditable', 'true')
+                                parent.find('.contenteditable_df').attr('contenteditable', 'true')
                             }
                             return
                         }
@@ -237,11 +237,11 @@ const Poncon = {
                     })
                 })
                 $('.contenteditable_df').unbind().bind('keydown', function (event) {
-                    if (event.keyCode == 13) {
+                    if (event.keyCode == 13 && !event.shiftKey) {
                         return false;
                     }
                 }).bind('keyup', function (event) {
-                    if (event.keyCode == 13) {
+                    if (event.keyCode == 13 && !event.shiftKey) {
                         var This_2 = this
                         var parent = $(this).parents('._jshdesrf')
                         var id = parent.data('id')

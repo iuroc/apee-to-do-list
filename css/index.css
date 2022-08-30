@@ -90,3 +90,6 @@
 .cursor {
     cursor: pointer;
 }
+.bs-popover-bottom {
+    box-shadow: 2px 2px 5px #ccc;
+}

@@ -46,5 +46,10 @@ $(document).ready(function () {
     $('input').bind('keyup', function () {
         $(this).removeClass('is-invalid')
     })
+    $(function () {
+        $('[data-toggle="popover"]').popover({
+            trigger: 'focus'
+        })
+    })
     $('._jfgghywsegyferg').attr('placeholder', '今天是' + getDate())
 })
