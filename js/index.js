@@ -24,6 +24,9 @@ $(document).ready(function () {
             if (!Poncon.load.home && Poncon.loginStatus) {
                 Poncon.home_loadDataList(0)
             }
+            if (!Poncon.loginStatus) {
+                location.hash = '/login'
+            }
         } else if (target == 'login') {
             document.title = '用户登录 - ' + Poncon.title
             $('body').show()

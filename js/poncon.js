@@ -225,9 +225,11 @@ const Poncon = {
                         if (data.code == 200) {
                             if (data.data.finish) {
                                 parent.addClass('finish')
+                                $('.contenteditable_df').removeAttr('contenteditable')
                             } else {
                                 parent.removeClass('finish')
                                 parent.find('._hfuwugfergtruhg').attr('')
+                                $('.contenteditable_df').attr('contenteditable', 'true')
                             }
                             return
                         }
@@ -254,8 +256,8 @@ const Poncon = {
                                     <label class="custom-control-label" for="home-list-item-${index}"></label>
                                 </div>
                                 <div class="right_jfgghesdgfherg">
-                                    <h5 contenteditable="true" class="font-weight-bold _hfuwugfergtruhg">${item.content}</h5>
-                                    ${item.need_time ? `<div class="d-flex">期限：<b class="text-info _ufgygtfyerytger" contenteditable="true">${item.need_time}</b></div>` : ''}
+                                    <h5 contenteditable="${item.finish ? 'off' : 'true'}" class="contenteditable_df font-weight-bold _hfuwugfergtruhg">${item.content}</h5>
+                                    ${item.need_time ? `<div class="d-flex">期限：<b class="text-info contenteditable_df _ufgygtfyerytger" contenteditable="${item.finish ? 'off' : 'true'}">${item.need_time}</b></div>` : ''}
                                     <div class="small text-muted">
                                         ${item.created_at} 创建
                                     </div>
