@@ -284,7 +284,7 @@ const Poncon = {
                                     <label class="custom-control-label" for="home-list-item-${index}"></label>
                                 </div>
                                 <div class="right_jfgghesdgfherg">
-                                    <div contenteditable="${item.finish ? 'off' : 'true'}" class="contenteditable_df font-weight-bold _hfuwugfergtruhg">${item.content}</div>
+                                    <div contenteditable="${item.finish ? 'off' : 'true'}" class="contenteditable_df _hfuwugfergtruhg">${item.content}</div>
                                     ${item.need_time ? `<div class="d-flex">期限：<b class="text-info contenteditable_df _ufgygtfyerytger" contenteditable="${item.finish ? 'off' : 'true'}">${item.need_time}</b></div>` : ''}
                                     <div class="small text-muted">
                                         ${item.created_at} 创建
