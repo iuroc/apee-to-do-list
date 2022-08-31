@@ -1,6 +1,7 @@
 * {
     word-wrap: break-word !important;
     word-break: break-all !important;
+    font-family: consolas;
 }
 
 .font-size-0 {
@@ -30,6 +31,7 @@
 
 ._hfuwugfergtruhg {
     flex: 1;
+    font-size: 20px;
 }
 
 .custom-control-label::before,
@@ -90,6 +92,7 @@
 .cursor {
     cursor: pointer;
 }
+
 .bs-popover-bottom {
     box-shadow: 2px 2px 5px #ccc;
 }
