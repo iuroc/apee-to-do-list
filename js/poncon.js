@@ -231,6 +231,7 @@ const Poncon = {
                                 parent.find('._hfuwugfergtruhg').attr('')
                                 parent.find('.contenteditable_df').attr('contenteditable', 'true')
                             }
+                            parent.find('._ggsdhesfesgf').html(data.data.update_time + ' 更新')
                             return
                         }
                         alert(data.msg)
@@ -256,13 +257,15 @@ const Poncon = {
                         }, function (data) {
                             if (data.code == 200) {
                                 $(This_2).removeClass('text-danger').blur()
+                                parent.find('._ggsdhesfesgf').html(data.data.update_time + ' 更新')
                                 return
                             }
                             alert(data.msg)
                         })
                         return false
+                    } else if ((event.keyCode > 18 || event.keyCode < 16) && !event.shiftKey && !event.ctrlKey && !event.altKey) {
+                        $(this).addClass('text-danger')
                     }
-                    $(this).addClass('text-danger')
                 })
                 return
             }
@@ -286,8 +289,8 @@ const Poncon = {
                                 <div class="right_jfgghesdgfherg">
                                     <div contenteditable="${item.finish ? 'off' : 'true'}" class="contenteditable_df _hfuwugfergtruhg">${item.content}</div>
                                     ${item.need_time ? `<div class="d-flex">期限：<b class="text-info contenteditable_df _ufgygtfyerytger" contenteditable="${item.finish ? 'off' : 'true'}">${item.need_time}</b></div>` : ''}
-                                    <div class="small text-muted">
-                                        ${item.created_at} 创建
+                                    <div class="small text-muted _ggsdhesfesgf">
+                                        ${item.update_time} 更新
                                     </div>
                                 </div>
                                 <button class="btn btn-sm btn-danger btn_asdjiad" onclick="Poncon.home_deleteData(this, ${item.id})">删除</button>

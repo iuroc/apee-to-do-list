@@ -17,12 +17,14 @@ $id = $poncon->POST('id', '', true);
 $conn = $poncon->initDb();
 $poncon->login($conn, $username, $password);
 $table = $poncon->getConfig()['table']['data'];
-$sql = "UPDATE `$table` SET `content` = '$content', `need_time` = '$need_time' WHERE `id` = '$id' LIMIT 1;";
+$update_time = date("Y-m-d H:i:s");
+$sql = "UPDATE `$table` SET `content` = '$content', `update_time` = '$update_time', `need_time` = '$need_time' WHERE `id` = '$id' LIMIT 1;";
 $result = mysqli_query($conn, $sql);
 if (!$result) {
     $poncon->error(903, '数据库错误');
 }
 $poncon->success('更新成功', [
     'username' => $username,
-    'id' => $id
+    'id' => $id,
+    'update_time' => $update_time
 ]);

@@ -16,7 +16,8 @@ $finish = (int)$poncon->POST('finish', 0, true);
 $conn = $poncon->initDb();
 $poncon->login($conn, $username, $password);
 $table = $poncon->getConfig()['table']['data'];
-$sql = "UPDATE `$table` SET `finish` = $finish WHERE `id` = $id AND `username` = '$username' LIMIT 1;";
+$update_time = date("Y-m-d H:i:s");
+$sql = "UPDATE `$table` SET `finish` = $finish, `update_time` = '$update_time' WHERE `id` = $id AND `username` = '$username' LIMIT 1;";
 $result = mysqli_query($conn, $sql);
 if (!$result) {
     $poncon->error(903, '数据库错误');
@@ -24,5 +25,6 @@ if (!$result) {
 $poncon->success('更新成功', [
     'username' => $username,
     'id' => $id,
-    'finish' => $finish
+    'finish' => $finish,
+    'update_time' => $update_time
 ]);

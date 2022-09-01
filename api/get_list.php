@@ -17,7 +17,7 @@ $offset = $page * $pageSize;
 $conn = $poncon->initDb();
 $poncon->login($conn, $username, $password);
 $table = $poncon->getConfig()['table']['data'];
-$sql = "SELECT * FROM `$table` WHERE `username` = '$username' ORDER BY `created_at` DESC LIMIT $offset, $pageSize";
+$sql = "SELECT * FROM `$table` WHERE `username` = '$username' ORDER BY `update_time` DESC LIMIT $offset, $pageSize";
 $result = mysqli_query($conn, $sql);
 if (!$result) {
     $poncon->error(903, '数据库错误');
