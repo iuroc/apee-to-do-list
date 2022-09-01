@@ -155,7 +155,7 @@ const Poncon = {
         $.post('api/add_data.php', {
             username: this.getStorage('username'),
             password: this.getStorage('password'),
-            content: content,
+            content: content.replace(/(?:\s*([\w~!@#$%^&*()_+`\-=[\]{};'\,./:"|<>?]+)\s*)/g, ' $1 ').replace(/(^\s+)|(\s+$)/g, ''),
             need_time: need_time_str
         }, function (data) {
             if (data.code == 200) {
@@ -281,7 +281,7 @@ const Poncon = {
         var html_finish = ''
         data.forEach((item, index) => {
             item.finish = parseInt(item.finish)
-            var html_temp = `<div class="rounded border shadow-sm p-3 d-flex mb-3 _jshdesrf${item.finish ? ' finish' : ''}" data-id="${item.id}">
+            var html_temp = `<div class="rounded border shadow-sm py-2 px-3 d-flex mb-3 _jshdesrf${item.finish ? ' finish' : ''}" data-id="${item.id}">
                                 <div class="custom-control custom-checkbox mr-3">
                                     <input type="checkbox"${item.finish ? ' checked' : ''} class="custom-control-input d-none _jafrwgerg" id="home-list-item-${index}">
                                     <label class="custom-control-label" for="home-list-item-${index}"></label>
