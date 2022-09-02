@@ -155,7 +155,7 @@ const Poncon = {
         $.post('api/add_data.php', {
             username: this.getStorage('username'),
             password: this.getStorage('password'),
-            content: content.replace(/(?:\s*([\w~!@#$%^&*()_+`\-=[\]{};'\,./:"|<>?]+)\s*)/g, ' $1 ').replace(/(^\s+)|(\s+$)/g, ''),
+            content: content.replace(/([^\x00-\xff])(\w)/g, '$1 $2').replace(/(\w)([^\x00-\xff])/g, '$1 $2'),
             need_time: need_time_str
         }, function (data) {
             if (data.code == 200) {
