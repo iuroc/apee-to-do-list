@@ -28,7 +28,7 @@
 </head>
 
 <body style="display: none;">
-    <nav class="navbar navbar-expand-sm navbar-light bg-light shadow-sm sticky-top mb-4">
+    <nav class="navbar navbar-expand-sm navbar-light bg-light shadow-sm sticky-top mb-3 mb-sm-4">
         <a class="navbar-brand" href=""><?php echo $config['title'] ?></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
